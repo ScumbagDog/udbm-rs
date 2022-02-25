@@ -4,6 +4,8 @@ use std::env;
 use std::path::PathBuf;
 
 fn main () {
+
+    println!("cargo:rustc-link-lib=dylib=stdc++");
     let bindings = bindgen::Builder::default()
         .header("UDBM/include/dbm/dbm.h")
         .clang_arg("-IUDBM/include")
@@ -25,6 +27,7 @@ fn main () {
     ];
     let mut builder = cc::Build::new();
     let build = builder
+        .cpp(true)
         .files(src.iter())
         .includes(includes.iter());
 
