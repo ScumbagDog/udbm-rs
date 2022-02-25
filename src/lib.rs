@@ -3,5 +3,14 @@
 #![allow(non_snake_case)]
 
 use libc::*;
+use std::ptr;
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+
+#[test]
+fn init_test(){
+    let x: *mut raw_t = ptr::null_mut();
+    unsafe {
+        dbm_init(x, 3);
+    }
+}
