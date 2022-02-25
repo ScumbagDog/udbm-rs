@@ -20,7 +20,9 @@ fn main () {
 
     let src = [
         "UDBM/dbm/dbm.c",
-        "UDBM/base/intutils.cpp"
+        "UDBM/base/intutils.cpp",
+        "UDBM/dbm/print.cpp",
+        "UDBM/debug/utils.cpp",
     ];
     let includes = [
         "UDBM/include",

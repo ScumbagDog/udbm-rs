@@ -33,6 +33,13 @@ pub mod udbm {
             return bindings::dbm_relation(lesser_dbm.data.as_ptr(), greater_dbm.data.as_ptr(), lesser_dbm.dim as u32);
         }
     }
+
+    /*pub fn satisfied(dbm: &DBM, i: u32, j: u32, c: u32) -> bool {
+        unsafe{
+            return bindings::dbm_satisfies(dbm.data.as_ptr(), dbm.dim, i, j, c);
+        }
+        return true;
+    }*/
 }
 
 #[test]
