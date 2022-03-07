@@ -24,4 +24,11 @@ extern "C" {
   void rs_dbm_down(raw_t *dbm, cindex_t dim) {
     return dbm_down(dbm, dim);
   }
+  bool rs_dbm_constrain1(raw_t *dbm, cindex_t dim, cindex_t i, cindex_t j, raw_t constraint) {
+    return dbm_constrain1(dbm, dim, i, j, constraint);
+  }
+
+  void rs_dbm_freeClock(raw_t *dbm, cindex_t dim, cindex_t k) {
+    dbm_freeClock(dbm, dim, k);
+  }
 }

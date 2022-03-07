@@ -8,6 +8,7 @@ fn main() {
     let bindings = bindgen::Builder::default()
         .header("include/wrapper.hpp")
         .clang_arg("-IUDBM/include")
+        .allowlist_function("rs_.*")
         .generate()
         .expect("Unable to generate bindings");
 

@@ -12,6 +12,9 @@ extern "C" {
 
   void rs_dbm_up(raw_t *dbm, cindex_t dim);
   void rs_dbm_down(raw_t *dbm, cindex_t dim);
+
+  bool rs_dbm_constrain1(raw_t *dbm, cindex_t dim, cindex_t i, cindex_t j, raw_t constraint);
+  void rs_dbm_freeClock(raw_t *dbm, cindex_t dim, cindex_t k);
 }
 
 #endif //WRAPPER_H

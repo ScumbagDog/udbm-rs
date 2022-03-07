@@ -2,9 +2,6 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
-use libc::*;
-use std::ptr;
-
 pub mod udbm {
     mod bindings {
         include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
@@ -24,8 +21,6 @@ pub mod udbm {
             dim: dim,
         };
     }
-
-    pub fn consistent(dbm: &DBM) {}
 
     pub fn relation(lhs_dbm: &DBM, rhs_dbm: &DBM) -> u32 {
         unsafe {
@@ -64,6 +59,24 @@ pub mod udbm {
     pub fn down(dbm: &mut DBM) -> () {
         unsafe {
             bindings::rs_dbm_down(dbm.data.as_mut_ptr(), dbm.dim as u32);
+        }
+    }
+
+    pub fn and(dbm: &mut DBM, i: usize, j: usize, constraint: i32) -> bool {
+        unsafe {
+            return bindings::rs_dbm_constrain1(
+                dbm.data.as_mut_ptr(),
+                dbm.dim as u32,
+                i as u32,
+                j as u32,
+                constraint,
+            );
+        }
+    }
+
+    pub fn free(dbm: &mut DBM, k: usize) {
+        unsafe {
+            bindings::rs_dbm_freeClock(dbm.data.as_mut_ptr(), dbm.dim as u32, k as u32);
         }
     }
 }
