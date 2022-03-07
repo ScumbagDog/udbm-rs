@@ -93,7 +93,12 @@ pub mod udbm {
 
     pub fn shift(dbm: &mut DBM, x: usize, value: i32) -> () {
         unsafe {
-            bindings::rs_dbm_updateIncrement(dbm.data.as_mut_ptr(), dbm.dim as u32, x as u32, value);
+            bindings::rs_dbm_updateIncrement(
+                dbm.data.as_mut_ptr(),
+                dbm.dim as u32,
+                x as u32,
+                value,
+            );
         }
     }
 }
