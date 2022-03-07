@@ -13,10 +13,11 @@ pub mod udbm {
         data: Vec<i32>,
         dim: usize,
     }
+
     pub fn init(dim: usize) -> DBM {
         let mut vec = vec![0; dim * dim];
-        unsafe{
-            bindings::dbm_init(vec.as_mut_ptr(), dim as u32);
+        unsafe {
+            bindings::rs_dbm_init(vec.as_mut_ptr(), dim as u32);
         }
         return DBM {
             data: vec,
@@ -24,22 +25,47 @@ pub mod udbm {
         };
     }
 
-    pub fn consistent(dbm: &DBM) {
+    pub fn consistent(dbm: &DBM) {}
 
-    }
-
-    pub fn relation(lesser_dbm: &DBM, greater_dbm: &DBM) -> u32 {
-        unsafe{
-            return bindings::dbm_relation(lesser_dbm.data.as_ptr(), greater_dbm.data.as_ptr(), lesser_dbm.dim as u32);
+    pub fn relation(lhs_dbm: &DBM, rhs_dbm: &DBM) -> u32 {
+        unsafe {
+            return bindings::rs_dbm_relation(
+                lhs_dbm.data.as_ptr(),
+                rhs_dbm.data.as_ptr(),
+                lhs_dbm.dim as u32,
+            );
         }
     }
 
-    /*pub fn satisfied(dbm: &DBM, i: u32, j: u32, c: u32) -> bool {
-        unsafe{
-            return bindings::dbm_satisfies(dbm.data.as_ptr(), dbm.dim, i, j, c);
+    pub fn satisfies(dbm: &DBM, i: usize, j: usize, constraint: i32) -> bool {
+        unsafe {
+            return bindings::rs_dbm_satisfies(
+                dbm.data.as_ptr(),
+                dbm.dim as u32,
+                i as u32,
+                j as u32,
+                constraint,
+            );
         }
-        return true;
-    }*/
+    }
+
+    pub fn close(dbm: &mut DBM) -> bool {
+        unsafe {
+            return bindings::rs_dbm_close(dbm.data.as_mut_ptr(), dbm.dim as u32);
+        }
+    }
+
+    pub fn up(dbm: &mut DBM) -> () {
+        unsafe {
+            bindings::rs_dbm_up(dbm.data.as_mut_ptr(), dbm.dim as u32);
+        }
+    }
+
+    pub fn down(dbm: &mut DBM) -> () {
+        unsafe {
+            bindings::rs_dbm_down(dbm.data.as_mut_ptr(), dbm.dim as u32);
+        }
+    }
 }
 
 #[test]

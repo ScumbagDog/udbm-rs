@@ -3,11 +3,10 @@ extern crate bindgen;
 use std::env;
 use std::path::PathBuf;
 
-fn main () {
-
+fn main() {
     println!("cargo:rustc-link-lib=dylib=stdc++");
     let bindings = bindgen::Builder::default()
-        .header("UDBM/include/dbm/dbm.h")
+        .header("include/wrapper.hpp")
         .clang_arg("-IUDBM/include")
         .generate()
         .expect("Unable to generate bindings");
@@ -23,10 +22,9 @@ fn main () {
         "UDBM/base/intutils.cpp",
         "UDBM/dbm/print.cpp",
         "UDBM/debug/utils.cpp",
+        "src/wrapper.cpp",
     ];
-    let includes = [
-        "UDBM/include",
-    ];
+    let includes = ["UDBM/include", "include"];
     let mut builder = cc::Build::new();
     let build = builder
         .cpp(true)
