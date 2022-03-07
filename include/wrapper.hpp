@@ -15,6 +15,10 @@ extern "C" {
 
   bool rs_dbm_constrain1(raw_t *dbm, cindex_t dim, cindex_t i, cindex_t j, raw_t constraint);
   void rs_dbm_freeClock(raw_t *dbm, cindex_t dim, cindex_t k);
+
+  void rs_dbm_updateValue(raw_t *dbm, cindex_t dim, cindex_t x, int32_t value);
+  void rs_dbm_updateClock(raw_t *dbm, cindex_t dim, cindex_t x, cindex_t y);
+  void rs_dbm_updateIncrement(raw_t *dbm, cindex_t dim, cindex_t x, int32_t value);
 }
 
 #endif //WRAPPER_H

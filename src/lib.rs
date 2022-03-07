@@ -31,7 +31,6 @@ pub mod udbm {
             );
         }
     }
-
     pub fn satisfies(dbm: &DBM, i: usize, j: usize, constraint: i32) -> bool {
         unsafe {
             return bindings::rs_dbm_satisfies(
@@ -77,6 +76,24 @@ pub mod udbm {
     pub fn free(dbm: &mut DBM, k: usize) {
         unsafe {
             bindings::rs_dbm_freeClock(dbm.data.as_mut_ptr(), dbm.dim as u32, k as u32);
+        }
+    }
+
+    pub fn assign(dbm: &mut DBM, x: usize, value: i32) -> () {
+        unsafe {
+            bindings::rs_dbm_updateValue(dbm.data.as_mut_ptr(), dbm.dim as u32, x as u32, value);
+        }
+    }
+
+    pub fn copy(dbm: &mut DBM, x: usize, y: usize) -> () {
+        unsafe {
+            bindings::rs_dbm_updateClock(dbm.data.as_mut_ptr(), dbm.dim as u32, x as u32, y as u32);
+        }
+    }
+
+    pub fn shift(dbm: &mut DBM, x: usize, value: i32) -> () {
+        unsafe {
+            bindings::rs_dbm_updateIncrement(dbm.data.as_mut_ptr(), dbm.dim as u32, x as u32, value);
         }
     }
 }
