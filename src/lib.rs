@@ -20,18 +20,18 @@ pub mod udbm {
             data: vec,
             dim: dim,
         };
-}
-
-pub fn zero(dim: usize) -> DBM {
-    let mut vec = vec![0; dim * dim];
-    unsafe {
-        bindings::rs_dbm_zero(vec.as_mut_ptr(), dim as u32);
     }
-    return DBM {
-        data: vec,
-        dim: dim,
-    };
-}
+
+    pub fn zero(dim: usize) -> DBM {
+        let mut vec = vec![0; dim * dim];
+        unsafe {
+            bindings::rs_dbm_zero(vec.as_mut_ptr(), dim as u32);
+        }
+        return DBM {
+            data: vec,
+            dim: dim,
+        };
+    }
 
     pub fn relation(lhs_dbm: &DBM, rhs_dbm: &DBM) -> u32 {
         unsafe {
