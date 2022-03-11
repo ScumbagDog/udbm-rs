@@ -13,6 +13,10 @@ extern "C" {
     return dbm_relation(dbm1, dbm2, dim);
   }
 
+  unsigned int rs_dbm_base_SUBSET() {
+    return base_SUBSET;
+  }
+
   bool rs_dbm_satisfies(const raw_t *dbm, cindex_t dim, cindex_t i, cindex_t j, raw_t constraint) {
     return dbm_satisfies(dbm, dim, i, j, constraint);
   }

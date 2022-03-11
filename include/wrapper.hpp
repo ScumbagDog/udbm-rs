@@ -7,6 +7,7 @@ extern "C" {
   void rs_dbm_zero(raw_t *dbm, cindex_t dim);
 
   unsigned int rs_dbm_relation(const raw_t *dbm1, const raw_t *dbm2, cindex_t dim);
+  unsigned int rs_dbm_base_SUBSET();
   bool rs_dbm_satisfies(const raw_t *dbm, cindex_t dim, cindex_t i, cindex_t j, raw_t constraint);
 
   bool rs_dbm_close(raw_t *dbm, cindex_t dim);

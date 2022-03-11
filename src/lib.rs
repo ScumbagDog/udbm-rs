@@ -42,6 +42,12 @@ pub mod udbm {
             );
         }
     }
+
+    pub fn is_subset(lhs_dbm: &DBM, rhs_dbm: &DBM) -> bool {
+        unsafe {
+            return relation(lhs_dbm, rhs_dbm) == bindings::rs_dbm_base_SUBSET();
+        }
+    }
     pub fn satisfies(dbm: &DBM, i: usize, j: usize, constraint: i32) -> bool {
         unsafe {
             return bindings::rs_dbm_satisfies(
