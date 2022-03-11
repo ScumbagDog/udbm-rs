@@ -5,6 +5,10 @@ extern "C" {
     dbm_init(dbm, dim);
   }
 
+  void rs_dbm_zero(raw_t *dbm, cindex_t dim) {
+    dbm_zero(dbm, dim);
+  }
+
   unsigned int rs_dbm_relation(const raw_t *dbm1, const raw_t *dbm2, cindex_t dim) {
     return dbm_relation(dbm1, dbm2, dim);
   }
