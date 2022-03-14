@@ -1,6 +1,19 @@
 #include "dbm/dbm.h"
 
 extern "C" {
+
+  raw_t rs_dbm_boundbool2raw(int32_t bound, bool is_strict) {
+    return dbm_boundbool2raw(bound, is_strict);
+  }
+
+  int32_t rs_dbm_raw2bound(raw_t raw) {
+    return dbm_raw2bound(raw);
+  }
+
+  bool rs_dbm_rawIsStrict(raw_t raw) {
+    return dbm_rawIsStrict(raw);
+  }
+
   void rs_dbm_init(raw_t *dbm, cindex_t dim) {
     dbm_init(dbm, dim);
   }

@@ -11,6 +11,20 @@ pub mod udbm {
         dim: usize,
     }
 
+    pub fn encode_bound(value: i32, is_strict: bool) -> i32 {
+        unsafe {
+            return bindings::rs_dbm_boundbool2raw(value, is_strict);
+        }
+    }
+
+    pub fn decode_bound(bound: i32) -> (i32, bool) {
+        unsafe {
+            let value = bindings::rs_dbm_raw2bound(bound);
+            let is_strict = bindings::rs_dbm_rawIsStrict(bound);
+            return (value, is_strict);
+        }
+    }
+
     pub fn init(dim: usize) -> DBM {
         let mut vec = vec![0; dim * dim];
         unsafe {
