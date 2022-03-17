@@ -59,7 +59,9 @@ pub mod udbm {
 
     pub fn is_subset(lhs_dbm: &DBM, rhs_dbm: &DBM) -> bool {
         unsafe {
-            return relation(lhs_dbm, rhs_dbm) == bindings::rs_dbm_base_SUBSET();
+            let relation = relation(lhs_dbm, rhs_dbm);
+            return relation == bindings::rs_base_SUBSET ||
+                relation == bindings::rs_base_EQUAL;
         }
     }
     pub fn satisfies(dbm: &DBM, i: usize, j: usize, constraint: i32) -> bool {

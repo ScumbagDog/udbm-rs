@@ -9,6 +9,7 @@ fn main() {
         .header("include/wrapper.hpp")
         .clang_arg("-IUDBM/include")
         .allowlist_function("rs_.*")
+        .allowlist_var("rs_.*")
         .generate()
         .expect("Unable to generate bindings");
 
