@@ -59,11 +59,8 @@ pub mod udbm {
     }
 
     pub fn is_subset(lhs_dbm: &DBM, rhs_dbm: &DBM) -> bool {
-        unsafe {
-            let relation = relation(lhs_dbm, rhs_dbm);
-            return relation == bindings::rs_base_SUBSET ||
-                relation == bindings::rs_base_EQUAL;
-        }
+        let relation = relation(lhs_dbm, rhs_dbm);
+        return relation == bindings::rs_base_SUBSET || relation == bindings::rs_base_EQUAL;
     }
     pub fn satisfies(dbm: &DBM, i: usize, j: usize, constraint: i32) -> bool {
         unsafe {
@@ -142,7 +139,7 @@ fn init_test() {
     // Can we init without erroring?
     // Kinda useless, but good for sanity
     let dim = 3;
-    let dbm = udbm::init(dim);
+    let _dbm = udbm::init(dim);
 }
 
 #[test]
