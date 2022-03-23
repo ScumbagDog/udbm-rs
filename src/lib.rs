@@ -6,7 +6,7 @@ pub mod udbm {
     mod bindings {
         include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
     }
-    #[derive(PartialEq, Debug)]
+    #[derive(PartialEq, Debug, Clone)]
     pub struct DBM {
         data: Vec<i32>,
         dim: usize,
